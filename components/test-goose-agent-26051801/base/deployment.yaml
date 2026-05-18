@@ -22,23 +22,17 @@ spec:
         app.kubernetes.io/instance: test-goose-agent-26051801
     spec:
       containers:
-        - image: ghcr.io/block/goose:latest
+        - image: ${{ values.gooseImage }}
           name: goose-agent
-          command: ["goosed", "agent"]
+          command: ["goose", "serve", "--host", "0.0.0.0", "--port", "3000"]
           env:
             - name: GOOSE_PROVIDER
-              value: "openai"
+              value: "${{ values.gooseProvider }}"
             - name: GOOSE_MODEL
-              value: "gpt-4o-mini"
-            - name: GOOSE_HOST
-              value: "0.0.0.0"
-            - name: GOOSE_PORT
-              value: "3000"
-            - name: GOOSE_TLS
-              value: "false"
+              value: "${{ values.gooseModel }}"
           envFrom:
             - secretRef:
-                name: test-goose-agent-26051801-provider-api-key
+                name: ${{ values.name }}-provider-api-key
                 optional: true
           ports:
             - containerPort: 3000
@@ -53,3 +47,4 @@ spec:
           securityContext:
             runAsNonRoot: true
       restartPolicy: Always
+
