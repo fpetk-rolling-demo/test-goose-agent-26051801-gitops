@@ -22,17 +22,17 @@ spec:
         app.kubernetes.io/instance: test-goose-agent-26051801
     spec:
       containers:
-        - image: ${{ values.gooseImage }}
+        - image: ghcr.io/block/goose:latest
           name: goose-agent
           command: ["goose", "serve", "--host", "0.0.0.0", "--port", "3000"]
           env:
             - name: GOOSE_PROVIDER
-              value: "${{ values.gooseProvider }}"
+              value: "openai"
             - name: GOOSE_MODEL
-              value: "${{ values.gooseModel }}"
+              value: "gpt-4o-mini"
           envFrom:
             - secretRef:
-                name: ${{ values.name }}-provider-api-key
+                name: test-goose-agent-26051801-provider-api-key
                 optional: true
           ports:
             - containerPort: 3000
