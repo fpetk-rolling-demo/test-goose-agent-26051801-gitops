@@ -46,5 +46,11 @@ spec:
               memory: 512Mi
           securityContext:
             runAsNonRoot: true
+          volumeMounts:
+            - name: goose-local
+              mountPath: /home/goose/.local
+      volumes:
+        - name: goose-local
+          emptyDir: {}
       restartPolicy: Always
 
