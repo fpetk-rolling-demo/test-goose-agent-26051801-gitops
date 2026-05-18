@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-goose-agent-26051801-app
+  namespace: openshift-gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: ./components/test-goose-agent-26051801/overlays/development
+    repoURL: https://github.com/fpetk-rolling-demo/test-goose-agent-26051801-gitops.git
+    targetRevision: main
+  destination:
+    server: >-
+      https://kubernetes.default.svc
+    namespace: goose-agent
+  syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true

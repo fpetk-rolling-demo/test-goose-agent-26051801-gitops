@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app.kubernetes.io/instance: test-goose-agent-26051801
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-goose-agent-26051801
+  name: test-goose-agent-26051801
+spec:
+  port:
+    targetPort: 3000
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: test-goose-agent-26051801
+    weight: 100
+  wildcardPolicy: None

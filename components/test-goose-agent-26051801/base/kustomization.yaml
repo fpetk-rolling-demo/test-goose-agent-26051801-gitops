@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+commonLabels:
+  argocd/app-name: test-goose-agent-26051801
+  backstage.io/kubernetes-id: test-goose-agent-26051801
+  backstage.io/kubernetes-namespace: goose-agent
+  app.kubernetes.io/part-of: test-goose-agent-26051801
+resources:
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - goose-config.yaml

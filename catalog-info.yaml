@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: test-goose-agent-26051801
+  description: GitOps repository for the test-goose-agent-26051801 Goose AI agent deployment
+  annotations:
+    argocd/app-selector: rhtap/gitops=test-goose-agent-26051801
+    backstage.io/kubernetes-id: test-goose-agent-26051801
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: gitops
+  owner: user:default/theofanispetkos
+  lifecycle: experimental

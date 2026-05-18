@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-goose-agent-26051801-goose-config
+  labels:
+    app.kubernetes.io/instance: test-goose-agent-26051801
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-goose-agent-26051801
+data:
+  GOOSE_PROVIDER: "openai"
+  GOOSE_MODEL: "gpt-4o-mini"
